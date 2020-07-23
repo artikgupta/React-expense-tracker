@@ -49,12 +49,16 @@ class ExpenseTracker extends Component {
       });
     }
   };
-
+  // addTotal = (total) => {
+  //   const total = [...this.state.IncomeAndAmountArray];
+  //   total.reduce((a, b) => a + b, 0);
+  // };
   render() {
     return (
       <div className="main-container">
         <div className="container">
           <div className="trans-value">
+            <div> {this.state.amount}</div>
             <label>
               Transaction
               <input
@@ -87,6 +91,7 @@ class ExpenseTracker extends Component {
           </div>
           <div className="btn">
             <button onClick={this.addTransaction}>Add</button>
+            {/* <button onClick={this.addTotal}>AddTotal</button> */}
           </div>
         </div>
         {this.state.isTrue ? (
@@ -102,7 +107,13 @@ class ExpenseTracker extends Component {
           return (
             <div key={source.transactionName}>
               <div className="transaction">
-                <p>{source.type}</p>
+                <p
+                  className={
+                    source.type === "income" ? "income-color" : "expense-color"
+                  }
+                >
+                  {source.type}
+                </p>
                 <p>{source.transactionName}</p>
                 <p>
                   <i className="fas fa-rupee-sign"></i>
