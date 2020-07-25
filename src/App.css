@@ -24,16 +24,16 @@ label {
   justify-content: space-between;
   margin-bottom: 1rem;
 }
-.trans-value {
-  /* border: 1px solid red; */
-}
-.trans-amt {
-  /* border: 1px solid green; */
-}
+/* .trans-value {
+    border: 1px solid red;
+  }
+  .trans-amt {
+    border: 1px solid green;
+  }
 
-.typeName {
-  /* border: 1px solid blue; */
-}
+  .typeName {
+    border: 1px solid blue;
+  } */
 .btn {
   width: 8rem;
   height: 1rem;
@@ -48,7 +48,7 @@ button {
   top: 5rem;
   max-width: 600px;
   width: 100%;
-  margin: 0 auto;
+  margin: 10px auto;
   /* border: 1px solid green; */
   text-transform: capitalize;
   display: flex;
@@ -60,10 +60,30 @@ button {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
   position: relative;
   top: 5rem;
 }
 .flex h4 {
   color: #072ac8;
+}
+.income-color {
+  color: green;
+}
+.expense-color {
+  color: red;
+}
+.displayIncAndExp {
+  display: flex;
+  max-width: 600px;
+  width: 100%;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 0 1rem;
+  }
 }

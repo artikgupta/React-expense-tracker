@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TransactionCard from "./TransactionCard";
 
 class ExpenseTracker extends Component {
   constructor(props) {
@@ -49,16 +50,25 @@ class ExpenseTracker extends Component {
       });
     }
   };
-  // addTotal = (total) => {
-  //   const total = [...this.state.IncomeAndAmountArray];
-  //   total.reduce((a, b) => a + b, 0);
-  // };
+
   render() {
+    const totalincome = this.state.IncomeAndAmountArray.filter(
+      (v) => v.type === "income"
+    ).reduce((a, c) => +a + +c.amount, 0);
+
+    const totalexpense = this.state.IncomeAndAmountArray.filter(
+      (v) => v.type === "expense"
+    ).reduce((a, c) => +a + +c.amount, 0);
+
     return (
       <div className="main-container">
         <div className="container">
+          <div className="displayIncAndExp">
+            <h6 className="income-color">Total Income ={totalincome}</h6>
+            <h6 className="expense-color">Total Expense ={totalexpense}</h6>
+          </div>
+
           <div className="trans-value">
-            <div> {this.state.amount}</div>
             <label>
               Transaction
               <input
@@ -103,26 +113,7 @@ class ExpenseTracker extends Component {
         ) : (
           ""
         )}
-        {this.state.IncomeAndAmountArray.map((source) => {
-          return (
-            <div key={source.transactionName}>
-              <div className="transaction">
-                <p
-                  className={
-                    source.type === "income" ? "income-color" : "expense-color"
-                  }
-                >
-                  {source.type}
-                </p>
-                <p>{source.transactionName}</p>
-                <p>
-                  <i className="fas fa-rupee-sign"></i>
-                  {source.amount}
-                </p>
-              </div>
-            </div>
-          );
-        })}
+        <TransactionCard transactions={this.state.IncomeAndAmountArray} />
       </div>
     );
   }
