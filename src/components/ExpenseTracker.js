@@ -8,7 +8,7 @@ class ExpenseTracker extends Component {
     this.state = {
       transactionName: "",
       amount: "",
-      IncomeAndAmountArray: [],
+      transactions: [],
       type: "income",
       isTrue: false,
     };
@@ -36,7 +36,7 @@ class ExpenseTracker extends Component {
     if (this.state.transactionName === "" || this.state.amount === "") {
       alert("Your input feild is empty,please enter a valid value");
     } else {
-      const newIncAndAmt = [...this.state.IncomeAndAmountArray];
+      const newIncAndAmt = [...this.state.transactions];
       newIncAndAmt.push({
         transactionName: this.state.transactionName,
         amount: this.state.amount,
@@ -46,19 +46,19 @@ class ExpenseTracker extends Component {
         isTrue: true,
         transactionName: "",
         amount: "",
-        IncomeAndAmountArray: newIncAndAmt,
+        transactions: newIncAndAmt,
       });
     }
   };
 
   render() {
-    const totalincome = this.state.IncomeAndAmountArray.filter(
-      (v) => v.type === "income"
-    ).reduce((a, c) => +a + +c.amount, 0);
+    const totalincome = this.state.transactions
+      .filter((v) => v.type === "income")
+      .reduce((a, c) => +a + +c.amount, 0);
 
-    const totalexpense = this.state.IncomeAndAmountArray.filter(
-      (v) => v.type === "expense"
-    ).reduce((a, c) => +a + +c.amount, 0);
+    const totalexpense = this.state.transactions
+      .filter((v) => v.type === "expense")
+      .reduce((a, c) => +a + +c.amount, 0);
 
     return (
       <div className="main-container">
@@ -113,7 +113,7 @@ class ExpenseTracker extends Component {
         ) : (
           ""
         )}
-        <TransactionCard transactions={this.state.IncomeAndAmountArray} />
+        <TransactionCard transactions={this.state.transactions} />
       </div>
     );
   }
